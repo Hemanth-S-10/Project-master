@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <el-card >
+    <el-card>
       <table>
         <tr>
           <td>
             <h3 style="text-align:center;">Category</h3>
           </td>
           <td>
-          <h3>
-            <input type="text" v-model="data.category">
-          </h3>
+            <h3>
+              <input type="text" v-model="data.category">
+            </h3>
           </td>
         </tr>
         <tr>
@@ -31,8 +31,8 @@
         </tr>
       </table>
       <br>
-      <el-button style="background-color:#b300b3;" type="success" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button style="background-color:#b300b3;" type="success" v-on:click="navigate()">Go to your Quiz page</el-button>
+      <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
+      <el-button type="primary" v-on:click="navigate()">Go to your Quiz page</el-button>
     </el-card>
   </div>
 </template>
@@ -83,12 +83,17 @@ export default {
       this.$router.push("/quiz");
     },
     addinput(i) {
-      if(i==1){this.data.opt = this.data.opt + 1;}else{
-      if (this.data.question[i-1] !== "" && this.data.correct_answers[i-1] !== "" ) {
-        if (this.data.opt === i) {
-          this.data.opt = this.data.opt + 1;
+      if (i == 1) {
+        this.data.opt = this.data.opt + 1;
+      } else {
+        if (
+          this.data.question[i - 1] !== "" &&
+          this.data.correct_answers[i - 1] !== ""
+        ) {
+          if (this.data.opt === i) {
+            this.data.opt = this.data.opt + 1;
+          }
         }
-      }
       }
     }
   }

@@ -40,11 +40,7 @@
     <br>
     <div>
       <center>
-        <el-button
-          style="background-color:#b300b3;"
-          type="primary"
-          @click="handleclick()"
-        >Pay ₹{{getTotal.toFormat('₹0')}}</el-button>
+        <el-button type="primary" @click="handleclick()">Pay ₹{{getTotal.toFormat('₹0')}}</el-button>
       </center>
       <br>
       <br>

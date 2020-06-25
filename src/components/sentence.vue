@@ -35,7 +35,7 @@
         <h5 style="color:red">*After writing the answer press enter to generate a new box</h5>
       </table>
       <br>
-      <el-button style="background-color:#b300b3;" type="success" v-on:click="add()">Add Question</el-button>&emsp;
+      <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
       <el-button
         style="background-color:#b300b3;"
         type="success"

@@ -14,7 +14,7 @@
           @on-complete="handleOnComplete"
         />
         <br>
-        <el-button style="background:#b300b3;" type="success" @click="handleClearInput()">Resend</el-button>
+        <el-button type="primary" @click="handleClearInput()">Resend</el-button>
         Time remaining: {{min}}:{{sec}}
       </div>
     </div>
