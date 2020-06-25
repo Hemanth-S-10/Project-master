@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-card style="background:violet;">
+    <el-card>
       <table>
         <tr>
         <td><h3>Category:</h3> </td>

@@ -1,23 +1,23 @@
 
 <template>
-  <el-card style="background:violet;">
-  <div style="padding: 50px;">
+  <el-card>
     <div style="padding: 50px;">
-      <OtpInput
-        ref="otpInput"
-        input-classes="otp-input"
-        separator="-"
-        :num-inputs="4"
-        :should-auto-focus="true"
-        :is-input-num="true"
-        @on-change="handleOnChange"
-        @on-complete="handleOnComplete"
-      />
-      <br>
-      <el-button  style="background:#b300b3;" type="success" @click="handleClearInput()">Resend</el-button>
-      Time remaining: {{min}}:{{sec}}
+      <div style="padding: 50px;">
+        <OtpInput
+          ref="otpInput"
+          input-classes="otp-input"
+          separator="-"
+          :num-inputs="4"
+          :should-auto-focus="true"
+          :is-input-num="true"
+          @on-change="handleOnChange"
+          @on-complete="handleOnComplete"
+        />
+        <br>
+        <el-button style="background:#b300b3;" type="success" @click="handleClearInput()">Resend</el-button>
+        Time remaining: {{min}}:{{sec}}
+      </div>
     </div>
-  </div>
   </el-card>
 </template>
 
@@ -29,53 +29,48 @@ export default {
   data() {
     return {
       countDown: 120,
-      min : 0,
-      sec : 0,
+      min: 0,
+      sec: 0
     };
   },
-  components:{
+  components: {
     OtpInput
   },
 
   methods: {
     handleOnComplete(value) {
       console.log("OTP completed: ", value);
-      alert('Auto submitting')
+      alert("Auto submitting");
     },
     handleOnChange(value) {
       console.log("OTP changed: ", value);
     },
     handleClearInput() {
       this.$refs.otpInput.clearInput();
-      
-      if(this.countDown === 0 ){
+
+      if (this.countDown === 0) {
         this.countDown = 120;
-        this.countDownTimer()
-        
-      }
-      else{
+        this.countDownTimer();
+      } else {
         this.countDown = 120;
       }
-      
     },
 
     countDownTimer() {
-                if(this.countDown > 0) {
-                    setTimeout(() => {
-                        this.countDown -= 1
-                        this.min = Math.floor(this.countDown / 60) ;
-                        this.sec = this.countDown - (this.min*60)
-                        this.countDownTimer()
-                    }, 1000)
-                }
-            }
-            
-   },
-
-   created: function(){
-        this.countDownTimer()
+      if (this.countDown > 0) {
+        setTimeout(() => {
+          this.countDown -= 1;
+          this.min = Math.floor(this.countDown / 60);
+          this.sec = this.countDown - this.min * 60;
+          this.countDownTimer();
+        }, 1000);
+      }
     }
-  
+  },
+
+  created: function() {
+    this.countDownTimer();
+  }
 };
 </script>
 

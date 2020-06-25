@@ -1,46 +1,40 @@
 <template>
   <div id="app">
-    <el-card style="background:violet">
-    <form action="https://www.google.com">
-        <vue-tel-input
-        v-model="mobile"
-        @validate="check"
-        style="width:50%"
-        />
-        <p style="color:yellowgreen;float:left;">{{message}}</p><br>
+    <el-card>
+      <form action="https://www.google.com">
+        <vue-tel-input v-model="mobile" @validate="check" style="width:50%"/>
+        <p style="color:yellowgreen;float:left;">{{message}}</p>
+        <br>
         <input type="submit" value="Submit" v-if="!error">
-    </form>
+      </form>
     </el-card>
   </div>
 </template>
 <script>
+import { VueTelInput } from "vue-tel-input";
 
-import {VueTelInput} from 'vue-tel-input';
-
-    export default {
-        name: "PhoneNo",
-        components: {
-            VueTelInput
-        },
-        data: () => ({
-
-            mobile:'',
-            error:true,
-            message:''
-        }),
-        methods:{
-            check({ isValid}){
-                if(isValid===true){
-                    this.error=false
-                    this.message="Valid Phone Number"
-                }
-                else{
-                  this.error=true
-                  this.message=''
-                }
-            }
-        }
-    };
+export default {
+  name: "PhoneNo",
+  components: {
+    VueTelInput
+  },
+  data: () => ({
+    mobile: "",
+    error: true,
+    message: ""
+  }),
+  methods: {
+    check({ isValid }) {
+      if (isValid === true) {
+        this.error = false;
+        this.message = "Valid Phone Number";
+      } else {
+        this.error = true;
+        this.message = "";
+      }
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 #app {

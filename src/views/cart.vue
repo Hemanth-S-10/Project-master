@@ -1,49 +1,59 @@
 <template>
-<div class="cart" style="background-color:#ff66ff;">
-        <h1 class="title">
-        Order
-        <span>
-          <span class="language"> Total </span>
-        </span>
-        </h1>
-        <ul class="items">
-        <li :key="item.id" v-for="item in data.items" class="item">
-            <div class="item-preview">
-            <img :src="item.thumbnail" :alt="item.title" class="item-thumbnail">
-            <div>
-              <h2 class="item-title">{{ item.title }}</h2>
-              <p class="item-description">{{ item.description }}</p>
-            </div>
-            </div>
-            <div>
-            <input type="text" class="item-quantity" v-model="item.quantity">
-            <span class="item-price"> X ₹{{ toPrice(item.price).toFormat('₹0') }} &nbsp; = &nbsp; ₹{{toPrice(item.price).toFormat('₹0')*item.quantity}}</span>&emsp;
-            <el-button type="danger" icon="el-icon-delete" circle v-on:click="deleteitem(item)"></el-button>
-            </div>
-        </li>
-        </ul>
-        <h3 class="cart-line">
-        Subtotal
-        <span class="cart-price">  ₹{{ getSubtotal.toFormat('₹0') }} </span>
-        </h3>
-        <h3 class="cart-line">
-        GST ({{ data.vatRate }}%)
-        <span class="cart-price">₹{{ getTaxAmount.toFormat('₹0') }}</span>
-        </h3>
-        <h3 class="cart-line"></h3>
-        <h3 class="cart-line">
-        Total
-        <span class="cart-price cart-total">₹{{ getTotal.toFormat('₹0') }}</span>
-        </h3>
+  <div class="cart">
+    <h1 class="title">
+      Order
+      <span>
+        <span class="language">Total</span>
+      </span>
+    </h1>
+    <ul class="items">
+      <li :key="item.id" v-for="item in data.items" class="item">
+        <div class="item-preview">
+          <img :src="item.thumbnail" :alt="item.title" class="item-thumbnail">
+          <div>
+            <h2 class="item-title">{{ item.title }}</h2>
+            <p class="item-description">{{ item.description }}</p>
+          </div>
+        </div>
+        <div>
+          <input type="text" class="item-quantity" v-model="item.quantity">
+          <span
+            class="item-price"
+          >X ₹{{ toPrice(item.price).toFormat('₹0') }} &nbsp; = &nbsp; ₹{{toPrice(item.price).toFormat('₹0')*item.quantity}}</span>&emsp;
+          <el-button type="danger" icon="el-icon-delete" circle v-on:click="deleteitem(item)"></el-button>
+        </div>
+      </li>
+    </ul>
+    <h3 class="cart-line">
+      Subtotal
+      <span class="cart-price">₹{{ getSubtotal.toFormat('₹0') }}</span>
+    </h3>
+    <h3 class="cart-line">
+      GST ({{ data.vatRate }}%)
+      <span class="cart-price">₹{{ getTaxAmount.toFormat('₹0') }}</span>
+    </h3>
+    <h3 class="cart-line"></h3>
+    <h3 class="cart-line">
+      Total
+      <span class="cart-price cart-total">₹{{ getTotal.toFormat('₹0') }}</span>
+    </h3>
     <br>
     <div>
-        <center><el-button style="background-color:#b300b3;" type="primary" @click="handleclick()">Pay ₹{{getTotal.toFormat('₹0')}}</el-button></center><br><br>
+      <center>
+        <el-button
+          style="background-color:#b300b3;"
+          type="primary"
+          @click="handleclick()"
+        >Pay ₹{{getTotal.toFormat('₹0')}}</el-button>
+      </center>
+      <br>
+      <br>
     </div>
-</div>
+  </div>
 </template>
 <script>
-import Dinero from "dinero.js"
-import json from '../static/products.json'
+import Dinero from "dinero.js";
+import json from "../static/products.json";
 export default {
   name: "app",
   data() {
@@ -51,10 +61,10 @@ export default {
       data: {
         items: [],
         shippingPrice: 0,
-        vatRate: 0,
+        vatRate: 0
       },
       language: "hi-IN",
-      pay:false
+      pay: false
     };
   },
   methods: {
@@ -63,13 +73,12 @@ export default {
         amount: Math.round(amount * factor)
       }).setLocale(this.language);
     },
-    deleteitem(item){
-      
-     this.data.items.splice(this.data.items.indexOf(item),1);
+    deleteitem(item) {
+      this.data.items.splice(this.data.items.indexOf(item), 1);
     },
-    
-    handleclick(){
-      this.$router.push('/pay?price='+this.getTotal.toFormat('₹0'))
+
+    handleclick() {
+      this.$router.push("/pay?price=" + this.getTotal.toFormat("₹0"));
     }
   },
   computed: {
@@ -90,7 +99,7 @@ export default {
     }
   },
   created() {
-      this.data=json
+    this.data = json;
   }
 };
 </script>

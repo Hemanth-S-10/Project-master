@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <el-card style="background:violet;">
+    <el-card>
       <table>
-      <tr>
-      <td><h3>Category:</h3></td>
-      <td><input type="text" v-model="data.category"></td>
-      </tr>
-      <tr>
-      <td><h3>Title of the Passage:</h3></td>
-      <td><textarea v-model="data.question"/></td>
-      </tr>
-      <tr>
-         <td><h3>Sentences in Correct order </h3></td>
-      </tr>
-      <tr v-for="i in data.opt" :key="i">    
+        <tr>
           <td>
-            <textarea v-on:keyup.enter="addinput(i)" style="width:100%" v-model="data.correct_answers[i-1]"/>
+            <h3>Category:</h3>
           </td>
-      </tr>
-      <h5 style="color:red" >*After writing the answer press enter to generate a new box</h5>
+          <td>
+            <input type="text" v-model="data.category">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Title of the Passage:</h3>
+          </td>
+          <td>
+            <textarea v-model="data.question"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Sentences in Correct order</h3>
+          </td>
+        </tr>
+        <tr v-for="i in data.opt" :key="i">
+          <td>
+            <textarea
+              v-on:keyup.enter="addinput(i)"
+              style="width:100%"
+              v-model="data.correct_answers[i-1]"
+            />
+          </td>
+        </tr>
+        <h5 style="color:red">*After writing the answer press enter to generate a new box</h5>
       </table>
       <br>
       <el-button style="background-color:#b300b3;" type="success" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button style="background-color:#b300b3;" type="success" v-on:click="navigate()">Go to your Quiz page</el-button>
+      <el-button
+        style="background-color:#b300b3;"
+        type="success"
+        v-on:click="navigate()"
+      >Go to your Quiz page</el-button>
     </el-card>
   </div>
 </template>
