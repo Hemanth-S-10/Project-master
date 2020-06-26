@@ -8,7 +8,7 @@
           </td>
           <td>
             <h3>
-              <input type="text" v-model="data.category">
+              <el-input type="text" v-model="data.category"/>
             </h3>
           </td>
         </tr>
@@ -17,7 +17,17 @@
             <h3 style="text-align:center;">Question</h3>
           </td>
           <td>
-            <h3 style="text-align:center;">Answer</h3>
+            <h3>
+              <el-input type="textarea" :autosize="{ minRows: 2}" v-model="data.head"/>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3 style="text-align:center;">Column A</h3>
+          </td>
+          <td>
+            <h3 style="text-align:center;">Column B</h3>
           </td>
         </tr>
 
@@ -46,6 +56,7 @@ export default {
         opt: 1,
         category: "",
         type: "mtf",
+        head:'',
         difficulty: "medium",
         question: [""],
         correct_answers: [""],
@@ -64,6 +75,7 @@ export default {
         category: this.data.category,
         type: this.data.type,
         difficulty: this.data.difficulty,
+        head:this.data.head,
         question: this.data.question,
         correct_answers: this.data.correct_answers,
         correct: this.data.correct
@@ -71,6 +83,7 @@ export default {
       this.data.opt = 1;
       this.data.category = "";
       this.data.question = [""];
+      this.data.head="";
       this.data.correct_answers = [""];
       this.data.correct = [""];
       console.log(this.arr);
@@ -80,7 +93,7 @@ export default {
       console.log(obj);
     },
     navigate() {
-      this.$router.push("/quiz");
+      this.$router.push("/test");
     },
     addinput(i) {
       if (i == 1) {

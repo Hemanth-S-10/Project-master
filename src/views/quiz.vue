@@ -4,6 +4,7 @@
       <h1>{{ quiz.category }}</h1>
       <el-card>
         <h2>Match the question in coloumn A to the answers in coloumn b by rearranging coloumn B</h2>
+        <h2>{{quiz.head}}</h2>
         <table>
           <tr>
             <td>
@@ -52,7 +53,7 @@
         <el-button type="success" v-on:click="next">next</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Your Total score is {{score}} / {{nques}}</h1>
+    <h1 v-if="questionindex == quizez.length">Navigating to the Arrange in Order Test.{{navigate()}}</h1>
   </div>
 </template>
 
@@ -65,6 +66,7 @@ var quiz_questions = [
     category: "Maths",
     type: "mtf",
     difficulty: "easy",
+    head:"Arithmetic operations",
     question: ["2*3", "1*0", "5*1"],
     correct_answers: ["6", "0", "5"],
     correct: ["6", "0", "5"]
@@ -73,6 +75,7 @@ var quiz_questions = [
 
 export default {
   name: "app",
+  props:['prevscore','nos'],
   components: {
     draggable
   },
@@ -153,6 +156,9 @@ export default {
       this.movingIndex = index;
       this.futureIndex = futureIndex;
       return false; // disable sort
+    },
+    navigate:function(){
+      this.$router.push({ path: 'sen', query: { score:this.score,noq:this.nques+this.nos } })
     }
   },
   computed: {
@@ -168,7 +174,7 @@ export default {
       return JSON.stringify(this.list, null, 2);
     },
     score: function() {
-      var total = 0;
+      var total = this.prevscore;
       for (var i = 0; i < this.answers.length; i++) {
         for (var j = 0; j < this.answers[i].length; j++) {
           if (this.answers[i][j] === this.quizez[i].correct[j]) {

@@ -37,7 +37,7 @@
       <br>
       <br>
       <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button type="primary" v-on:click="navigate()">Go to your Quiz page</el-button>
+      <el-button type="primary" v-on:click="navigate()">Go to your Test page</el-button>
     </el-card>
   </div>
 </template>
@@ -82,7 +82,7 @@ export default {
       console.log(obj);
     },
     navigate() {
-      this.$router.push("/mcq");
+      this.$router.push("/test");
     },
     answer(i) {
       this.data.correct_answer = this.data.incorrect_answers[i - 1];

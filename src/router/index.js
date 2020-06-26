@@ -25,28 +25,30 @@ Vue.use(VueRouter)
   },
   {
     path:'/quiz',
-    name:'mcq',
-    component:()=>import('../views/quiz.vue')
+    name:'mtf',
+    component:()=>import('../views/quiz.vue'),
+    props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
-    path:'/mcqc',
+    path:'/creator',
     name:'mcqc',
-    component:()=>import('../components/mcqcreator.vue')
+    component:()=>import('../views/Navigator.vue')
   },
   {
-    path:'/mcq',
+    path:'/test',
     name:'Quiz',
     component:mcq
   },
   {
     path:'/asent',
     name:'asent',
-    component:()=>import('../components/sentence.vue')
+    component:()=>import('../components/sentence.vue'),
   },
   {
     path:'/sen',
     name:'sen',
-    component:sen
+    component:sen,
+    props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
     path:'/otp',

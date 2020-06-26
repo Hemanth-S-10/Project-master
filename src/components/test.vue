@@ -45,7 +45,7 @@
         <el-button type="success" v-on:click="next">next</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Your Total score is {{score}} / {{nques}}</h1>
+    <h1 v-if="questionindex == quizez.length">Your Total score is {{score}} / {{nques+nos}}</h1>
   </div>
 </template>
 
@@ -66,6 +66,7 @@ var quiz_questions = [
 
 export default {
   name: "app",
+  props:['prevscore','nos'],
   components: {
     draggable
   },
@@ -146,6 +147,9 @@ export default {
       this.movingIndex = index;
       this.futureIndex = futureIndex;
       return false; // disable sort
+    },
+    navigate:function(){
+      setTimeout(function(){ this.$router.push({path:''}) },5000);
     }
   },
   computed: {
@@ -161,7 +165,7 @@ export default {
       return JSON.stringify(this.list, null, 2);
     },
     score: function() {
-      var total = 0;
+      var total = this.prevscore;
       for (var i = 0; i < this.answers.length; i++) {
         for (var j = 0; j < this.answers[i].length; j++) {
           if (this.answers[i][j] === this.quizez[i].correct[j]) {

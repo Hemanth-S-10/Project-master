@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <td>
-            <h3>Sentences in Correct order</h3>
+            <h3>Options in Correct order</h3>
           </td>
         </tr>
         <tr v-for="i in data.opt" :key="i">
@@ -88,7 +88,7 @@ export default {
       console.log(obj);
     },
     navigate() {
-      this.$router.push("/sen");
+      this.$router.push("/test");
     },
     addinput(i) {
       if (this.data.correct_answers[i] !== "") {

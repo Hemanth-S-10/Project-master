@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-for="(quiz, index) in quizez" v-show="index === questionindex" :key="index">
+        <el-card>
         <h1>{{ quiz.category }}</h1>
         <h2>{{ quiz.question }}</h2>
-        <el-card>
         <ol>
             <el-radio-group v-model="answers[index]">
                 <li v-for="answer in quiz.incorrect_answers" :key="answer">
@@ -23,7 +23,7 @@
         </el-button>
         </center>
         </div>
-            <h1 v-if="questionindex == quizez.length">Your Total score is {{score}} / {{quizez.length}}</h1>
+            <h1 v-if="questionindex == quizez.length">Navigating to match the following.{{navigate()}}</h1>
         </div>
 </template>
 <script>
@@ -163,6 +163,9 @@ export default {
         },
         prev: function() {
         this.questionindex--;
+        },
+        navigate:function(){
+        this.$router.push({ path: 'quiz', query: { score:this.score,noq:this.quizez.length } })
         }
     },
 computed:{
