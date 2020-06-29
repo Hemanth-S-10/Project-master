@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <el-card>
-      <form action="https://www.google.com">
-        <vue-tel-input v-model="mobile" @validate="check" style="width:50%"/>
+    
+      <form action="https://www.google.com" style="margin-top:5%;">
+        <center><vue-tel-input v-model="mobile" @validate="check" style="width:50%"/></center>
         <p style="color:yellowgreen;float:left;">{{message}}</p>
         <br>
         <input type="submit" value="Submit" v-if="!error">
       </form>
-    </el-card>
   </div>
 </template>
 <script>

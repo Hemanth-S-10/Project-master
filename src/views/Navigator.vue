@@ -10,6 +10,8 @@
         </span>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="mcqc">MCQ</el-dropdown-item>
+            <el-dropdown-item command="maq">MAQ</el-dropdown-item>
+            <el-dropdown-item command="tf">TRUE OR FALSE</el-dropdown-item>
             <el-dropdown-item command="mtfc">MATCH THE FOLLOWING</el-dropdown-item>
             <el-dropdown-item command="sen">ARRANGE IN ORDER</el-dropdown-item>
         </el-dropdown-menu>
@@ -36,6 +38,8 @@
   import mtfc from "./creator.vue"
   import mcqc from "../components/mcqcreator.vue"
   import sen from "../components/sentence.vue"
+  import maq from "../components/maqcreator.vue"
+  import tf from "../components/tfcreator.vue"
   export default {
      data() {
         return {
@@ -45,7 +49,9 @@
     },
     components:{
         mcqc,
+        maq,
         mtfc,
+        tf,
         sen
     },
     methods: {
@@ -54,6 +60,8 @@
         this.componentName=command
         if(command=="mtfc"){this.title="MATCH THE FOLLOWING"}
         else if(command=="sen"){this.title="ARRANGE IN ORDER"}
+        else if(command=="maq"){this.title="MAQ"}
+        else if(command=="tf"){this.title="TRUE OR FALSE"}
         else{this.title="MCQ"}
       },
     }

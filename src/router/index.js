@@ -19,14 +19,21 @@ Vue.use(VueRouter)
     component:()=>import('../views/cart.vue')
   },
   {
-    path:'/mtfc',
-    name:'mtfc',
-    component:()=>import('../views/creator.vue')
-  },
-  {
     path:'/quiz',
     name:'mtf',
     component:()=>import('../views/quiz.vue'),
+    props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
+  },
+  {
+    path:'/maq',
+    name:'maq',
+    component:()=>import('../components/maq.vue'),
+    props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
+  },
+  {
+    path:'/tf',
+    name:'tf',
+    component:()=>import('../components/tf.vue'),
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
@@ -38,11 +45,6 @@ Vue.use(VueRouter)
     path:'/test',
     name:'Quiz',
     component:mcq
-  },
-  {
-    path:'/asent',
-    name:'asent',
-    component:()=>import('../components/sentence.vue'),
   },
   {
     path:'/sen',

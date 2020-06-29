@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -25,7 +25,7 @@
     <router-view/>
   </div>
 </template>
-<style src='../node_modules/bootswatch/dist/cosmo/bootstrap.min.css' scoped>
+<style src='../node_modules/bootswatch/dist/cosmo/bootstrap.css' scoped>
     /* global styles */
 </style>
 

@@ -53,7 +53,7 @@
         <el-button type="success" v-on:click="next">next</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Navigating to the Arrange in Order Test.{{navigate()}}</h1>
+    <h1 v-if="questionindex == quizez.length">Navigating to the Multiple Answer Questions.{{navigate()}}</h1>
   </div>
 </template>
 
@@ -158,7 +158,7 @@ export default {
       return false; // disable sort
     },
     navigate:function(){
-      this.$router.push({ path: 'sen', query: { score:this.score,noq:this.nques+this.nos } })
+      this.$router.push({ path: 'maq', query: { score:this.score,noq:this.nques+this.nos } })
     }
   },
   computed: {
