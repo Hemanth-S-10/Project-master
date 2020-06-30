@@ -29,7 +29,7 @@
 <script>
 var quiz_questions = [
   {
-  "category": "Entertainment: Film",
+  "category": "Entertainment:Film",
   "type": "multiple",
   "difficulty": "easy",
   "question": "Who directed E.T. the Extra-Terrestrial (1982)?",
