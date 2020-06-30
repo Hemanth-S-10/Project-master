@@ -77,8 +77,8 @@ export default {
       this.data.correct_answer = "";
       this.data.incorrect_answers = [""];
       const data = JSON.stringify(this.arr);
-      window.localStorage.setItem("arr", data);
-      const obj = JSON.parse(window.localStorage.getItem("arr"));
+      window.localStorage.setItem("mcq", data);
+      const obj = JSON.parse(window.localStorage.getItem("mcq"));
       console.log(obj);
     },
     navigate() {

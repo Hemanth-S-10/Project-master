@@ -70,6 +70,16 @@ var quiz_questions = [
     question: ["2*3", "1*0", "5*1"],
     correct_answers: ["6", "0", "5"],
     correct: ["6", "0", "5"]
+  },
+  {
+    no: 1,
+    category: "Maths",
+    type: "mtf",
+    difficulty: "easy",
+    head:"Arithmetic operations",
+    question: ["2+3", "1+0", "5+1"],
+    correct_answers: ["5", "1", "6"],
+    correct: ["5", "1", "6"]
   }
 ];
 

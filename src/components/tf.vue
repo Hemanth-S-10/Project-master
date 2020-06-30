@@ -35,6 +35,14 @@ var quiz_questions = [
     question: "Was E.T. the Extra-Terrestrial shot in (1982)?",
     correct_answer: "TRUE",
     incorrect_answers: ["TRUE", "FALSE"]
+  },
+  {
+    category: "Entertainment: Film",
+    type: "true or false",
+    difficulty: "easy",
+    question: "Was 7 Aum Arivu directed by A.R.Murugadoss?",
+    correct_answer: "TRUE",
+    incorrect_answers: ["TRUE", "FALSE"]
   }
 ];
 export default {
