@@ -14,8 +14,8 @@
         </tr>
         <tr></tr>
         <tr v-for="i in data.opt" :key="i">
-          <input type="text" v-on:input="addinput(i)" v-model="data.incorrect_answers[i-1]">
           <input name="answer" type="radio" v-on:click="answer(i)">
+          <input type="text" v-on:input="addinput(i)" v-model="data.incorrect_answers[i-1]">
         </tr>
       </table>
       <br>
