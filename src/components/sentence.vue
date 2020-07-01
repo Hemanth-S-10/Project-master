@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td colspan="2">
-            <el-input type="textarea" style="width:100%" :autosize="{ minRows: 4}" placeholder="Enter your Question here" v-model="data.question"/>
+            <el-input type="textarea" style="width:100%" :autosize="{ minRows: 2}" placeholder="Enter your Question here" v-model="data.question"/>
           </td>
         </tr>
         <tr>
@@ -14,7 +14,7 @@
         </tr>
         <tr v-for="i in data.opt" :key="i">
           <td>
-            <el-input type="textarea"
+            <textarea
               v-on:input="addinput(i)"
               style="width:100%"
               v-model="data.correct_answers[i-1]"
@@ -59,7 +59,6 @@ export default {
         correct: this.data.correct
       });
       this.data.opt = 1;
-      this.data.category = "";
       this.data.question = "";
       this.data.correct_answers = [""];
       this.data.correct = [""];

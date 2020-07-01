@@ -44,7 +44,9 @@
         <el-button type="success" v-on:click="next">Next</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Test Completed.{{submit()}}</h1>
+    <el-card v-if="questionindex == quizez.length">
+    <h1 >Your score is {{score}} / {{nques+nos}}</h1>
+    </el-card>
   </div>
 </template>
 
