@@ -18,7 +18,6 @@
             <el-checkbox :label="data.incorrect_answers[i-1]"><input type="text" v-on:click="addinput(i)" v-model="data.incorrect_answers[i-1]"></el-checkbox>
           </el-checkbox-group>
         </tr>
-        <b>{{data.correct_answer}}</b>
       </table>
       <br>
       <br>
