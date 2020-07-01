@@ -21,7 +21,6 @@
             />
           </td>
         </tr>
-        <h5 style="color:red">*After writing the answer press enter to generate a new box</h5>
       </table>
       <br>
       <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
