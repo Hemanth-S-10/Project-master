@@ -18,7 +18,7 @@
     <br>
     <div v-if="questionindex < quizez.length">
       <center>
-        <el-button type="danger" style="float:left;" v-if="questionindex > 0" v-on:click="prev">prev</el-button>&emsp;
+        <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">prev</el-button>&emsp;
         <el-button type="success" v-on:click="next">next</el-button>
         <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>
       </center>

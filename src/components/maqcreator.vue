@@ -15,7 +15,7 @@
         <tr></tr>
         <tr v-for="i in data.opt" :key="i">
           <el-checkbox-group v-model="data.correct_answer">
-            <el-checkbox :label="data.incorrect_answers[i-1]"><input type="text" v-on:click="addinput(i)" v-model="data.incorrect_answers[i-1]"></el-checkbox>
+            <el-checkbox :label="data.incorrect_answers[i-1]"><el-input type="text" v-on:input="addinput(i)" v-model="data.incorrect_answers[i-1]"/></el-checkbox>
           </el-checkbox-group>
         </tr>
       </table>

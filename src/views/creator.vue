@@ -27,7 +27,6 @@
       </table>
       <br>
       <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button type="primary" v-on:click="navigate()">Go to your Quiz page</el-button>
     </el-card>
   </div>
 </template>

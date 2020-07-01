@@ -1,5 +1,7 @@
 <template>
-    <h1>Your score is {{score}}/{{noq}}</h1>
+    <el-card>
+        <h1>Your score is {{score}}/{{noq}}</h1>
+    </el-card>
 </template>
 <script>
 export default {
