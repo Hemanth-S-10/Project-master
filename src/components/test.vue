@@ -101,9 +101,9 @@ export default {
       }
     },
     next: function() {
+      this.validate();
       this.questionindex++;
       if (this.questionindex < this.quizez.length) {
-        this.validate();
         const message = this.quizez[this.questionindex].correct_answers.sort(
           function() {
             return 0.5 - Math.random();
