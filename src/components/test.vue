@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-for="(quiz,index) in quizez" v-show="index === questionindex" :key="index">
-      <h1>{{ quiz.category }}</h1>
       <el-card>
         <h3>{{ quiz.question}}</h3>
         <table>
@@ -40,12 +39,12 @@
 
     <div v-if="questionindex < quizez.length">
       <center>
-        <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">prev</el-button>&emsp;
-        <el-button type="warning" v-on:click="submit">Submit</el-button>&emsp;
-        <el-button type="success" v-on:click="next">next</el-button>
+        <el-button type="danger" style="float:left;" v-if="questionindex > 0" v-on:click="prev">Prev</el-button>&emsp;
+        <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>&emsp;
+        <el-button type="success" v-on:click="next">Next</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Your Total score is {{score}} / {{nques+nos}}</h1>
+    <h1 v-if="questionindex == quizez.length">Test Completed.{{submit()}}</h1>
   </div>
 </template>
 
@@ -55,7 +54,6 @@ import draggable from "vuedraggable";
 var quiz_questions = [
   {
     no: 0,
-    category: "Maths",
     type: "mtf",
     difficulty: "easy",
     question: "Arrange the below options in descending order",
@@ -103,6 +101,7 @@ export default {
     next: function() {
       this.questionindex++;
       if (this.questionindex < this.quizez.length) {
+        this.validate();
         const message = this.quizez[this.questionindex].correct_answers.sort(
           function() {
             return 0.5 - Math.random();
@@ -124,7 +123,11 @@ export default {
         return { name, order: index + 1 };
       });
     },
-    submit: function() {
+    submit:function(){
+    this.validate();
+    this.$router.push({ path: 'complete', query: { score:this.score,noq:this.quizez.length+this.nos } })
+    },
+    validate: function() {
       for (
         var i = 0;
         i < this.quizez[this.questionindex].correct_answers.length;

@@ -1,9 +1,8 @@
 
 <template>
   <el-card>
-    <div style="padding: 50px;">
       <div style="padding: 50px;">
-        <OtpInput
+        <otp-input
           ref="otpInput"
           input-classes="otp-input"
           separator="-"
@@ -17,7 +16,6 @@
         <el-button type="primary" @click="handleClearInput()">Resend</el-button>
         Time remaining: {{min}}:{{sec}}
       </div>
-    </div>
   </el-card>
 </template>
 
@@ -74,7 +72,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .otp-input {
   width: 40px;
   height: 40px;

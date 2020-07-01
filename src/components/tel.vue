@@ -1,11 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" style="background:white;">
     
-      <form action="https://www.google.com" style="margin-top:5%;">
-        <center><vue-tel-input v-model="mobile" @validate="check" style="width:50%"/></center>
-        <p style="color:yellowgreen;float:left;">{{message}}</p>
+      <form action="https://www.google.com">
+        <center style="padding-top:2%;"><vue-tel-input v-model="mobile" @validate="check" style="width:50%;"/></center>
         <br>
-        <input type="submit" value="Submit" v-if="!error">
+        <el-button style="margin-bottom:3%;" type="success" v-if="!error">Submit</el-button>
       </form>
   </div>
 </template>
@@ -20,16 +19,13 @@ export default {
   data: () => ({
     mobile: "",
     error: true,
-    message: ""
   }),
   methods: {
     check({ isValid }) {
       if (isValid === true) {
         this.error = false;
-        this.message = "Valid Phone Number";
       } else {
         this.error = true;
-        this.message = "";
       }
     }
   }

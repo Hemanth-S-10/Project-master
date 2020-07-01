@@ -3,23 +3,8 @@
     <el-card>
       <table>
         <tr>
-          <td>
-            <h3 style="text-align:center;">Category</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="text" v-model="data.category"/>
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3 style="text-align:center;">Question</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="textarea" :autosize="{ minRows: 2}" v-model="data.head"/>
-            </h3>
+          <td colspan="2">
+              <el-input type="textarea" placeholder="Enter your queston here" style="width:100%" :autosize="{ minRows: 2}" v-model="data.head"/>
           </td>
         </tr>
         <tr>
@@ -36,7 +21,7 @@
             <textarea v-model="data.question[i-1]"/>&nbsp;
           </td>
           <td>
-            <textarea v-on:focus="addinput(i)" v-model="data.correct_answers[i-1]"/>
+            <textarea v-on:input="addinput(i)" v-model="data.correct_answers[i-1]"/>
           </td>
         </tr>
       </table>
@@ -54,7 +39,6 @@ export default {
     return {
       data: {
         opt: 1,
-        category: "",
         type: "mtf",
         head:'',
         difficulty: "medium",
@@ -72,7 +56,6 @@ export default {
         this.data.correct[i] = this.data.correct_answers[i];
       }
       this.arr.push({
-        category: this.data.category,
         type: this.data.type,
         difficulty: this.data.difficulty,
         head:this.data.head,
@@ -81,9 +64,8 @@ export default {
         correct: this.data.correct
       });
       this.data.opt = 1;
-      this.data.category = "";
-      this.data.question = [""];
       this.data.head="";
+      this.data.question = [""];
       this.data.correct_answers = [""];
       this.data.correct = [""];
       console.log(this.arr);
@@ -96,18 +78,9 @@ export default {
       this.$router.push("/test");
     },
     addinput(i) {
-      if (i == 1) {
-        this.data.opt = this.data.opt + 1;
-      } else {
-        if (
-          this.data.question[i - 1] !== "" &&
-          this.data.correct_answers[i - 1] !== ""
-        ) {
           if (this.data.opt === i) {
             this.data.opt = this.data.opt + 1;
           }
-        }
-      }
     }
   }
 };

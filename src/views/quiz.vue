@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-for="(quiz,index) in quizez" v-show="index === questionindex" :key="index">
-      <h1>{{ quiz.category }}</h1>
       <el-card>
         <h2>Match the question in coloumn A to the answers in coloumn b by rearranging coloumn B</h2>
         <h2>{{quiz.head}}</h2>
@@ -48,9 +47,9 @@
 
     <div v-if="questionindex < quizez.length">
       <center>
-        <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">prev</el-button>&emsp;
-        <el-button type="warning" v-on:click="submit">Submit</el-button>&emsp;
-        <el-button type="success" v-on:click="next">next</el-button>
+        <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">Prev</el-button>&emsp;
+        <el-button type="success" v-on:click="next">Next</el-button>
+        <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>
       </center>
     </div>
     <h1 v-if="questionindex == quizez.length">Navigating to the Multiple Answer Questions.{{navigate()}}</h1>
@@ -63,7 +62,6 @@ import draggable from "vuedraggable";
 var quiz_questions = [
   {
     no: 0,
-    category: "Maths",
     type: "mtf",
     difficulty: "easy",
     head:"Arithmetic operations",
@@ -72,8 +70,7 @@ var quiz_questions = [
     correct: ["6", "0", "5"]
   },
   {
-    no: 1,
-    category: "Maths",
+    no: 0,
     type: "mtf",
     difficulty: "easy",
     head:"Arithmetic operations",
@@ -120,6 +117,7 @@ export default {
       }
     },
     next: function() {
+      this.validate();
       this.questionindex++;
       if (this.questionindex < this.quizez.length) {
         const message = this.quizez[this.questionindex].correct_answers.sort(
@@ -143,7 +141,10 @@ export default {
         return { name, order: index + 1 };
       });
     },
-    submit: function() {
+    submit:function(){
+
+    },
+    validate: function() {
       for (
         var i = 0;
         i < this.quizez[this.questionindex].correct_answers.length;

@@ -3,23 +3,8 @@
     <el-card>
       <table>
         <tr>
-          <td>
-            <h3>Category:</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="text" v-model="data.category"/>
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3>Question:</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="textarea" :autosize="{ minRows: 2}" v-model="data.question"/>
-            </h3>
+          <td colspan="2">
+              <el-input style="width:150%" type="textarea" placeholder="Enter your question here" :autosize="{ minRows: 2}" v-model="data.question"/>
           </td>
         </tr>
         <tr>
@@ -38,7 +23,6 @@
       <br>
       <br>
       <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button type="primary" v-on:click="navigate()">Go to your Test page</el-button>
     </el-card>
   </div>
 </template>
@@ -50,7 +34,6 @@ export default {
     return {
       data: {
         opt: 2,
-        category: "",
         type: "multiple",
         difficulty: "medium",
         question: "",
@@ -64,7 +47,6 @@ export default {
   methods: {
     add() {
       this.arr.push({
-        category: this.data.category,
         type: this.data.type,
         difficulty: this.data.difficulty,
         question: this.data.question,
@@ -73,7 +55,6 @@ export default {
       });
       console.log(this.arr);
       this.data.opt = 1;
-      this.data.category = "";
       this.data.question = "";
       this.data.correct_answer = "";
       this.data.incorrect_answers = ["TRUE", "FALSE"];
@@ -84,10 +65,6 @@ export default {
     },
     navigate() {
       this.$router.push("/test");
-    },
-
-    addinput() {
-      this.data.opt = this.data.opt + 1;
     }
   }
 };

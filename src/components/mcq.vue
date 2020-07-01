@@ -2,12 +2,11 @@
     <div>
         <div v-for="(quiz, index) in quizez" v-show="index === questionindex" :key="index">
         <el-card>
-        <h1>{{ quiz.category }}</h1>
         <h2>{{ quiz.question }}</h2>
-        <ol>
+        <ol style="padding:0;">
             <el-radio-group v-model="answers[index]">
                 <li v-for="answer in quiz.incorrect_answers" :key="answer">
-                    <el-radio name="answer" :label="answer"><b>{{answer}}</b></el-radio>
+                    <el-radio name=" answer" style="margin-bottom: 2px;" :label="answer"><b>{{answer}}</b></el-radio>
                 </li>
             </el-radio-group>       
         </ol>
@@ -16,11 +15,12 @@
         <div v-if="questionindex < quizez.length">
         <center>
         <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">
-        prev
+        Prev
         </el-button>&emsp;
         <el-button type="success" v-on:click="next">
-        next
+        Next
         </el-button>
+        <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>
         </center>
         </div>
             <h1 v-if="questionindex == quizez.length">Navigating to match the following.{{navigate()}}</h1>
@@ -29,7 +29,6 @@
 <script>
 var quiz_questions = [
   {
-  "category": "Entertainment:Film",
   "type": "multiple",
   "difficulty": "easy",
   "question": "Who directed E.T. the Extra-Terrestrial (1982)?",
@@ -42,7 +41,6 @@ var quiz_questions = [
   ]
   },
   {
-  "category": "Entertainment: Video Games",
   "type": "multiple",
   "difficulty": "medium",
   "question": "What is the main character of Metal Gear Solid 2?",
@@ -75,6 +73,9 @@ export default {
         },
         navigate:function(){
         this.$router.push({ path: 'quiz', query: { score:this.score,noq:this.quizez.length } })
+        },
+        submit:function(){
+        this.$router.push({ path: 'complete', query: { score:this.score,noq:this.quizez.length} })
         }
     },
 computed:{

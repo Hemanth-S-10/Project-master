@@ -3,23 +3,8 @@
     <el-card>
       <table>
         <tr>
-          <td>
-            <h3>Category:</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="text" v-model="data.category"/>
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3>Question:</h3>
-          </td>
-          <td>
-            <h3>
-              <el-input type="textarea" :autosize="{ minRows: 2}" v-model="data.question"/>
-            </h3>
+          <td colspan="2">
+              <el-input style="width:150%" type="textarea" placeholder="Enter your question here" :autosize="{ minRows: 2}" v-model="data.question"/>
           </td>
         </tr>
         <tr>
@@ -29,15 +14,13 @@
         </tr>
         <tr></tr>
         <tr v-for="i in data.opt" :key="i">
-          <b>{{i}}.</b>
-          <input type="text" v-on:click="addinput()" v-model="data.incorrect_answers[i-1]">
-          <input type="radio" v-on:click="answer(i)">
+          <input type="text" v-on:input="addinput(i)" v-model="data.incorrect_answers[i-1]">
+          <input name="answer" type="radio" v-on:click="answer(i)">
         </tr>
       </table>
       <br>
       <br>
       <el-button type="primary" v-on:click="add()">Add Question</el-button>&emsp;
-      <el-button type="primary" v-on:click="navigate()">Go to your Test page</el-button>
     </el-card>
   </div>
 </template>
@@ -49,7 +32,6 @@ export default {
     return {
       data: {
         opt: 1,
-        category: "",
         type: "multiple",
         difficulty: "medium",
         question: "",
@@ -81,14 +63,13 @@ export default {
       const obj = JSON.parse(window.localStorage.getItem("mcq"));
       console.log(obj);
     },
-    navigate() {
-      this.$router.push("/test");
-    },
     answer(i) {
       this.data.correct_answer = this.data.incorrect_answers[i - 1];
     },
-    addinput() {
+    addinput(i) {
+      if(this.data.opt==i){
       this.data.opt = this.data.opt + 1;
+      }
     }
   }
 };

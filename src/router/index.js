@@ -53,6 +53,12 @@ Vue.use(VueRouter)
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
+    path:'/complete',
+    name:'complete',
+    component:()=>import('../components/complete.vue'),
+    props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
+  },
+  {
     path:'/otp',
     name:'otp',
     component:()=>import('../components/otp.vue')
