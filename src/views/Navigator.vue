@@ -35,7 +35,7 @@
 </style>
 
 <script>
-  import mtfc from "./creator.vue"
+  import mtfc from "../components/creator.vue"
   import mcqc from "../components/mcqcreator.vue"
   import sen from "../components/sentence.vue"
   import maq from "../components/maqcreator.vue"

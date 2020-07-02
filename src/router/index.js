@@ -1,18 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
-import mcq from '../components/mcq.vue'
-import sen from '../components/test.vue'
-import Success from '../views/success.vue'
-import pay from '../views/paymentpage.vue'
 Vue.use(VueRouter)
 
   const routes = [
-    {
-      path:'/tel',
-      name:'tel',
-      component:()=>import('../components/tel.vue')
-    },  
+  {
+    path:'/tel',
+    name:'tel',
+    component:()=>import('../components/tel.vue')
+  },
+  {
+    path: '/fcreate',
+    name: 'Fcreator',
+    component: () => import('../components/fillcreator.vue')
+  },
+  {
+    path: '/fblank',
+    name: 'fill_in_the_blanks',
+    component:()=>import('../components/fill_in_the_blanks.vue')
+  },  
   {
     path:'/cart',
     name:'cart',
@@ -21,7 +26,7 @@ Vue.use(VueRouter)
   {
     path:'/quiz',
     name:'mtf',
-    component:()=>import('../views/quiz.vue'),
+    component:()=>import('../components/quiz.vue'),
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
@@ -38,18 +43,18 @@ Vue.use(VueRouter)
   },
   {
     path:'/creator',
-    name:'mcqc',
+    name:'Navigator',
     component:()=>import('../views/Navigator.vue')
   },
   {
     path:'/test',
     name:'Quiz',
-    component:mcq
+    component:()=>import('../components/mcq.vue')
   },
   {
     path:'/sen',
     name:'sen',
-    component:sen,
+    component:()=>import('../components/test.vue'),
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
@@ -66,12 +71,12 @@ Vue.use(VueRouter)
   {
     path: '/success',
     name: 'Success',
-    component:Success
+    component:()=>import('../views/success.vue')
   },
   {
     path:'/pay',
     name:'Pay',
-    component:pay,
+    component:()=>import('../views/paymentpage.vue'),
     props:(route) => ({ price: route.query.price })
   }
   

@@ -19,6 +19,12 @@
           <li class="nav-item">
             <router-link class="nav-link" :to="'/test'">Test Page</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="'/fcreate'">Fill in the Blanks Generator</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="'/fblank'">Fill in the blanks Page</router-link>
+          </li>
         </ul>
       </div>
     </nav>

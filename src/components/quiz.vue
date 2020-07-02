@@ -142,7 +142,8 @@ export default {
       });
     },
     submit:function(){
-
+      this.validate()
+      this.$router.push({ path: 'complete', query: { score:this.score,noq:this.nques+this.nos } })
     },
     validate: function() {
       for (
