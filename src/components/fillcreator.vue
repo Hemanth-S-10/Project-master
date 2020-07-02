@@ -38,7 +38,7 @@ export default {
         difficulty: this.data.difficulty,
         sentence: this.data.sentence
       });
-      this.data.question = "";
+      this.data.sentence = "";
       console.log(this.arr);
       const data = JSON.stringify(this.arr);
       window.localStorage.setItem("fillex", data);
