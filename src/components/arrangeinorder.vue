@@ -2,27 +2,19 @@
   <div>
     <div v-for="(quiz,index) in quizez" v-show="index === questionindex" :key="index">
       <el-card>
-        <h2>Match the question in coloumn A to the answers in coloumn b by rearranging coloumn B</h2>
-        <h2>{{quiz.head}}</h2>
+        <h3>{{ quiz.question}}</h3>
         <table>
           <tr>
             <td>
               <el-card>
-                <b>Column A</b>
-              </el-card>
-            </td>
-            <td>
-              <el-card>
-                <b>Column B</b>
+                <b>Options</b>
               </el-card>
             </td>
           </tr>
-          <tr v-for="(element,parent_node_index) in quiz.question" :key="element.order">
-            <td>
-              <el-card>
-                <b>{{element}}</b>
-              </el-card>
-            </td>
+          <tr
+            v-for="(element,parent_node_index) in quiz.correct_answers"
+            :key="element.order"
+          >
             <draggable
               class="list-group"
               tag="td"
@@ -47,12 +39,14 @@
 
     <div v-if="questionindex < quizez.length">
       <center>
-        <el-button type="danger" v-if="questionindex > 0" v-on:click="prev">Prev</el-button>&emsp;
+        <el-button type="danger" style="float:left;" v-if="questionindex > 0" v-on:click="prev">Prev</el-button>&emsp;
+        <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>&emsp;
         <el-button type="success" v-on:click="next">Next</el-button>
-        <el-button type="warning" style="float:right;" v-on:click="submit">Submit</el-button>
       </center>
     </div>
-    <h1 v-if="questionindex == quizez.length">Navigating to the Multiple Answer Questions.{{navigate()}}</h1>
+    <el-card v-if="questionindex == quizez.length">
+    <h1 >Your score is {{score}} / {{nques+nos}}</h1>
+    </el-card>
   </div>
 </template>
 
@@ -64,19 +58,9 @@ var quiz_questions = [
     no: 0,
     type: "mtf",
     difficulty: "easy",
-    head:"Arithmetic operations",
-    question: ["2*3", "1*0", "5*1"],
-    correct_answers: ["6", "0", "5"],
-    correct: ["6", "0", "5"]
-  },
-  {
-    no: 0,
-    type: "mtf",
-    difficulty: "easy",
-    head:"Arithmetic operations",
-    question: ["2+3", "1+0", "5+1"],
-    correct_answers: ["5", "1", "6"],
-    correct: ["5", "1", "6"]
+    question: "Arrange the below options in descending order",
+    correct_answers: ["6", "5", "3", "0"],
+    correct: ["6", "5", "3", "0"]
   }
 ];
 
@@ -94,7 +78,7 @@ export default {
       delayedDragging: false,
       questionindex: 0,
       quizez: quiz_questions,
-      answers: [[""], [""]]
+      answers: [[""]]
     };
   },
   created() {
@@ -109,11 +93,13 @@ export default {
   },
 
   methods: {
-    check: function(i, nam) {
-      if (this.list[i].name === nam) {
-        return true;
-      } else {
-        return false;
+    validate: function() {
+      for (
+        var i = 0;
+        i < this.quizez[this.questionindex].correct_answers.length;
+        i++
+      ) {
+        this.answers[this.questionindex][i] = this.list[i].name;
       }
     },
     next: function() {
@@ -142,17 +128,8 @@ export default {
       });
     },
     submit:function(){
-      this.validate()
-      this.$router.push({ path: 'complete', query: { score:this.score,noq:this.nques+this.nos } })
-    },
-    validate: function() {
-      for (
-        var i = 0;
-        i < this.quizez[this.questionindex].correct_answers.length;
-        i++
-      ) {
-        this.answers[this.questionindex][i] = this.list[i].name;
-      }
+    this.validate();
+    this.$router.push({ path: 'complete', query: { score:this.score,noq:this.quizez.length+this.nos } })
     },
     handleend() {
       this.futureItem = this.list[this.futureIndex];
@@ -167,10 +144,10 @@ export default {
       const { index, futureIndex } = e.draggedContext;
       this.movingIndex = index;
       this.futureIndex = futureIndex;
-      return false; // disable sort
+      return false;
     },
     navigate:function(){
-      this.$router.push({ path: 'maq', query: { score:this.score,noq:this.nques+this.nos } })
+      setTimeout(function(){ this.$router.push({path:''}) },5000);
     }
   },
   computed: {
@@ -181,9 +158,6 @@ export default {
         disabled: !this.editable,
         ghostClass: "ghost"
       };
-    },
-    listString() {
-      return JSON.stringify(this.list, null, 2);
     },
     score: function() {
       var total = this.prevscore;
@@ -218,10 +192,11 @@ export default {
     }
   },
   mounted() {
-    const obj = JSON.parse(window.localStorage.getItem("arr"));
+    const obj = JSON.parse(window.localStorage.getItem("sen"));
     if (obj !== null) {
       for (var i = 0; i < obj.length; i++) {
         this.quizez.push(obj[i]);
+        this.answers.push([""])
       }
     }
   }
@@ -230,7 +205,7 @@ export default {
 
 <style scoped>
 .flip-list-move {
-  transition: transform 0.5s;
+  transition: transform 1s;
 }
 
 .no-move {
@@ -244,13 +219,5 @@ export default {
 
 .list-group {
   min-height: 20px;
-}
-
-.list-group-item {
-  cursor: move;
-}
-
-.list-group-item i {
-  cursor: pointer;
 }
 </style>

@@ -35,9 +35,9 @@
 </style>
 
 <script>
-  import mtfc from "../components/creator.vue"
+  import mtfc from "../components/mtfcreator.vue"
   import mcqc from "../components/mcqcreator.vue"
-  import sen from "../components/sentence.vue"
+  import sen from "../components/arrangeinorder_creator.vue"
   import maq from "../components/maqcreator.vue"
   import tf from "../components/tfcreator.vue"
   export default {

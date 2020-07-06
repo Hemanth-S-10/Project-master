@@ -26,7 +26,7 @@ Vue.use(VueRouter)
   {
     path:'/quiz',
     name:'mtf',
-    component:()=>import('../components/quiz.vue'),
+    component:()=>import('../components/mtf.vue'),
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
@@ -44,7 +44,7 @@ Vue.use(VueRouter)
   {
     path:'/creator',
     name:'Navigator',
-    component:()=>import('../views/Navigator.vue')
+    component:()=>import('../views/Generator.vue')
   },
   {
     path:'/test',
@@ -54,7 +54,7 @@ Vue.use(VueRouter)
   {
     path:'/sen',
     name:'sen',
-    component:()=>import('../components/test.vue'),
+    component:()=>import('../components/arrangeinorder.vue'),
     props:(route) => ({ prevscore: route.query.score,nos:route.query.noq })
   },
   {
